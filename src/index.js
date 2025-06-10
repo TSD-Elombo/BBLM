@@ -24,29 +24,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
-// const corsOptions = {
-//     origin: process.env.ORIGIN.split(',').map(o => o.trim()),
-//     methods: process.env.METHODS.split(',').map(m => m.trim()), // Nettoyage des espaces
-//     allowedHeaders: process.env.ALLOWEDHEADERS.split(',').map(h => h.trim()), // Ajout manquant
-//     credentials: true, // Si vous utilisez des cookies
-// };
-
-const getAllOrigins = function (origin, callback) {
-    const allowedOrigins = process.env.ALLOWED_ORIGIN.split(',').map(o => o.trim());
-    if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-    } else {
-        callback(new Error('Not allowed by CORS'));
-    }
+const  corsOptions = {
+    origin: '*',
 }
-const corsOptions = {
-    origin: ['https://berp.bfcgroupsa.com', 'https://budgetline.bfcgroupsa.com'],
-};
-
 app.use(cors(corsOptions));
-// app.use(cors());
-//
+
 // Middleware de sécurité
 //app.use(helmet());
 
